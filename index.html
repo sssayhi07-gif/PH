@@ -12716,7 +12716,7 @@ input, textarea, select {
             </div>
             <div class="form-group">
                 <label for="product-price-input">默認價格 (元)</label>
-                <input type="number" id="product-price-input" min="0" step="1">
+                <input type="number" id="product-price-input" min="0" step="1.01">
             </div>
             <div class="form-group">
                 <label for="product-description-input">商品描述</label>
@@ -18267,7 +18267,7 @@ else if (msg.type === 'share_link') {
                         else { titleText = `轉帳: ${senderDisplayName} → ${receiverDisplayName}`; noteText = msg.note || '群聊內轉帳'; }
                     }
                     const heartIcon = `<svg viewBox="0 0 24 24" width="20" height="20" fill="currentColor" style="vertical-align: middle;"><path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z"></path></svg>`;
-                    contentHtml = `<div class="transfer-card"><div class="transfer-title">${heartIcon} ${titleText}</div><div class="transfer-amount">$ ${Number(msg.amount).toFixed(2)}</div><div class="transfer-note">${noteText}</div></div>`;
+                    contentHtml = `<div class="transfer-card"><div class="transfer-title">${heartIcon} ${titleText}</div><div class="transfer-amount">$ ${Number(msg.amount).toFixed(1)}</div><div class="transfer-note">${noteText}</div></div>`;
                 } else if (msg.type === 'waimai_request') {
                     bubble.classList.add('is-waimai-request', 'is-card-like');
                      if (msg.status === 'paid' || msg.status === 'rejected') bubble.classList.add(`status-${msg.status}`);
@@ -18275,7 +18275,7 @@ else if (msg.type === 'share_link') {
                     const requestTitle = `來自 ${senderDisplayName} 的代付請求`;
                     let actionButtonsHtml = '';
                     if (msg.status === 'pending' && !isUser) { actionButtonsHtml = `<div class="waimai-user-actions"><button class="waimai-decline-btn" data-choice="rejected">殘忍拒絕</button><button class="waimai-pay-btn" data-choice="paid">為Ta買單</button></div>`; }
-                    contentHtml = `<div class="waimai-card"><div class="waimai-header"><img src="https://files.catbox.moe/mq179k.png" class="icon" alt="Meituan Icon"><div class="title-group"><span class="brand">美團外送</span><span class="separator">|</span><span>外送美食</span></div></div><div class="waimai-catchphrase">Hi，你和我的距離只差一頓外送～</div><div class="waimai-main"><div class="request-title">${requestTitle}</div><div class="payment-box"><div class="payment-label">需付款</div><div class="amount">$${Number(msg.amount).toFixed(2)}</div><div class="countdown-label">剩餘支付時間<div class="countdown-timer" id="waimai-timer-${msg.timestamp}"></div></div></div><button class="waimai-details-btn">查看詳情</button></div>${actionButtonsHtml}</div>`;
+                    contentHtml = `<div class="waimai-card"><div class="waimai-header"><img src="https://files.catbox.moe/mq179k.png" class="icon" alt="Meituan Icon"><div class="title-group"><span class="brand">美團外送</span><span class="separator">|</span><span>外送美食</span></div></div><div class="waimai-catchphrase">Hi，你和我的距離只差一頓外送～</div><div class="waimai-main"><div class="request-title">${requestTitle}</div><div class="payment-box"><div class="payment-label">需付款</div><div class="amount">$${Number(msg.amount).toFixed(1)}</div><div class="countdown-label">剩餘支付時間<div class="countdown-timer" id="waimai-timer-${msg.timestamp}"></div></div></div><button class="waimai-details-btn">查看詳情</button></div>${actionButtonsHtml}</div>`;
                        setTimeout(() => {
         if (msg.status === 'pending') {
             const timerElement = document.getElementById(`waimai-timer-${msg.timestamp}`);
@@ -18306,7 +18306,7 @@ else if (msg.type === 'share_link') {
                 <div class="request-title" style="margin-bottom: 12px;">${senderDisplayName} 已為${recipientDisplayName}下單，請慢用～</div>
                 <div class="payment-box">
                     <div class="payment-label" style="font-size: 18px; font-weight: 600;">${msg.productInfo}</div>
-                    <div class="amount" style="margin-top: 8px;">$${Number(msg.amount).toFixed(2)}</div>
+                    <div class="amount" style="margin-top: 8px;">$${Number(msg.amount).toFixed(1)}</div>
                 </div>
                 <button class="waimai-details-btn">查看訂單詳情</button>
             </div>
@@ -18318,7 +18318,7 @@ else if (msg.type === 'share_link') {
                     const isFinished = msg.isFullyClaimed; const hasClaimed = msg.claimedBy && msg.claimedBy[myOriginalName];
                     let cardClass = '', claimedInfoHtml = '', typeText = '拼手氣紅包';
                     if (isFinished) { cardClass = 'opened'; } if (msg.packetType === 'direct') { const receiverDisplayName = getDisplayNameInGroup(chat, msg.receiverName); typeText = `專屬紅包: 給 ${receiverDisplayName}`; if (Object.keys(msg.claimedBy || {}).length > 0) cardClass = 'opened'; }
-                    if (hasClaimed) { const myClaimedAmount = msg.claimedBy[myOriginalName] || 0; claimedInfoHtml = `<div class="rp-claimed-info">你領取了紅包，金額 ${myClaimedAmount.toFixed(2)} 元</div>`; } 
+                    if (hasClaimed) { const myClaimedAmount = msg.claimedBy[myOriginalName] || 0; claimedInfoHtml = `<div class="rp-claimed-info">你領取了紅包，金額 ${myClaimedAmount.toFixed(1)} 元</div>`; } 
                     else if (isFinished) { claimedInfoHtml = `<div class="rp-claimed-info">紅包已被領完</div>`; } 
                     else if (msg.packetType === 'direct' && Object.keys(msg.claimedBy || {}).length > 0) { const receiverDisplayName = getDisplayNameInGroup(chat, msg.receiverName); claimedInfoHtml = `<div class="rp-claimed-info">已被 ${receiverDisplayName} 領取</div>`; }
                     contentHtml = `<div class="red-packet-card ${cardClass}"><div class="rp-header"><img src="https://files.catbox.moe/lo9xhc.png" class="rp-icon"><span class="rp-greeting">${msg.greeting || '恭喜發財，大吉大利！'}</span></div><div class="rp-type">${typeText}</div>${claimedInfoHtml}</div>`;
@@ -19301,7 +19301,7 @@ if (chat.settings.enableTimePerception) {
                     if (allProducts.length > 0) {
                         shoppingContext = "\n\n# 你的商店 (你可以為群成員購買禮物):\n";
                         allProducts.forEach(product => {
-                            shoppingContext += `- (ID: ${product.id}) 商品: ${product.name}, 價格: $${product.price.toFixed(2)}\n`;
+                            shoppingContext += `- (ID: ${product.id}) 商品: ${product.name}, 價格: $${product.price.toFixed(1)}\n`;
                         });
                     }
                     let membersWithContacts = chat.members.map(member => {
@@ -19608,7 +19608,7 @@ ${callTranscriptContext}
                     if (allProducts.length > 0) {
                         shoppingContext = "\n\n# 你的商店 (你可以為用戶購買禮物):\n";
                         allProducts.forEach(product => {
-                            shoppingContext += `- (ID: ${product.id}) 商品: ${product.name}, 價格: $${product.price.toFixed(2)}\n`;
+                            shoppingContext += `- (ID: ${product.id}) 商品: ${product.name}, 價格: $${product.price.toFixed(1)}\n`;
                         });
                     }
                     if (isOfflineMode) {
@@ -20906,7 +20906,7 @@ if (!isMember) {
                                         }
                                     }
         
-                                    claimedAmountAI = parseFloat(claimedAmountAI.toFixed(2));
+                                    claimedAmountAI = parseFloat(claimedAmountAI.toFixed(1));
                                     if (!packetToOpen.claimedBy) packetToOpen.claimedBy = {};
                                     packetToOpen.claimedBy[msgData.name] = claimedAmountAI;
         
@@ -20925,7 +20925,7 @@ const aiClaimedMessage = {
 };
 chat.history.push(aiClaimedMessage);
 // ▲▲▲ 修復代碼結束 ▲▲▲
-                                    let hiddenContentForAI = `[系統提示：你 (${claimerDisplayName}) 成功搶到了 ${claimedAmountAI.toFixed(2)} 元。`;
+                                    let hiddenContentForAI = `[系統提示：你 (${claimerDisplayName}) 成功搶到了 ${claimedAmountAI.toFixed(1)} 元。`;
                                     if (Object.keys(packetToOpen.claimedBy).length >= packetToOpen.count) {
                                         packetToOpen.isFullyClaimed = true;
                                         const finishedMessage = {
@@ -23461,7 +23461,7 @@ for (const action of responseArray) {
                                     const max = remainingAmount - (remainingCount - 1) * min;
                                     claimedAmountAI = Math.random() * (max - min) + min;
                                 }
-                                claimedAmountAI = parseFloat(claimedAmountAI.toFixed(2));
+                                claimedAmountAI = parseFloat(claimedAmountAI.toFixed(1));
                                 if (!packetToOpen.claimedBy) packetToOpen.claimedBy = {};
                                 packetToOpen.claimedBy[action.name] = claimedAmountAI;
         
@@ -23474,7 +23474,7 @@ for (const action of responseArray) {
                                 });
                                 
                                 // 創建對AI隱藏的、告知結果的消息
-                                let hiddenContentForAI = `[系統提示：你 (${senderDisplayName}) 成功搶到了 ${claimedAmountAI.toFixed(2)} 元。`;
+                                let hiddenContentForAI = `[系統提示：你 (${senderDisplayName}) 成功搶到了 ${claimedAmountAI.toFixed(1)} 元。`;
                                 if (Object.keys(packetToOpen.claimedBy).length >= packetToOpen.count) {
                                     packetToOpen.isFullyClaimed = true;
                                     // 告知紅包領完了
@@ -24994,7 +24994,7 @@ async function showWaimaiDetails(timestamp) {
         detailsHtml = `
             <div style="text-align: left; font-size: 15px; line-height: 1.8;">
                 <strong>商品:</strong> ${message.productInfo}<br>
-                <strong>金額:</strong> $${Number(message.amount).toFixed(2)}<br>
+                <strong>金額:</strong> $${Number(message.amount).toFixed(1)}<br>
                 <strong>狀態:</strong> ${statusText}
             </div>
         `;
@@ -25027,7 +25027,7 @@ async function showWaimaiDetails(timestamp) {
                 <strong>贈送方:</strong> ${senderDisplayName}<br>
                 <strong>接收方:</strong> ${recipientDisplayName}<br>
                 <strong>商品:</strong> ${message.productInfo}<br>
-                <strong>金額:</strong> $${Number(message.amount).toFixed(2)}
+                <strong>金額:</strong> $${Number(message.amount).toFixed(1)}
             </div>
         `;
     }
@@ -26295,7 +26295,7 @@ let selectedFrames = new Set();
                 await renderChatInterface(currentChatId);
                 
                 // b. 彈出“恭喜”提示框，等待用戶點擊“好的”
-                await showCustomAlert("恭喜！", `你領取了 ${getDisplayNameInGroup(freshChat, packet.senderName)} 的紅包，金額為 ${claimedAmount.toFixed(2)} 元。`);
+                await showCustomAlert("恭喜！", `你領取了 ${getDisplayNameInGroup(freshChat, packet.senderName)} 的紅包，金額為 ${claimedAmount.toFixed(1)} 元。`);
             }
         
             // --- 步驟4: 無論領取成功與否，最後都顯示詳情頁 ---
@@ -26337,7 +26337,7 @@ let selectedFrames = new Set();
                     claimedAmount = Math.random() * (max - min) + min;
                 }
             } else { claimedAmount = packet.totalAmount; }
-            claimedAmount = parseFloat(claimedAmount.toFixed(2));
+            claimedAmount = parseFloat(claimedAmount.toFixed(1));
         
             if (!packet.claimedBy) packet.claimedBy = {};
             packet.claimedBy[myOriginalName] = claimedAmount;
@@ -26425,7 +26425,7 @@ let selectedFrames = new Set();
             const myAmountEl = document.getElementById('rp-details-my-amount');
             // ▼▼▼ 核心修復2：用“本名”來查找我領取的金額 ▼▼▼
             if (packet.claimedBy && packet.claimedBy[myOriginalName]) {
-                myAmountEl.querySelector('span:first-child').textContent = packet.claimedBy[myOriginalName].toFixed(2);
+                myAmountEl.querySelector('span:first-child').textContent = packet.claimedBy[myOriginalName].toFixed(1);
                 myAmountEl.style.display = 'block';
             } else {
                 myAmountEl.style.display = 'none';
@@ -26433,7 +26433,7 @@ let selectedFrames = new Set();
         
             const claimedCount = Object.keys(packet.claimedBy || {}).length;
             const claimedAmountSum = Object.values(packet.claimedBy || {}).reduce((sum, val) => sum + val, 0);
-            let summaryText = `${claimedCount}/${packet.count}個紅包，共${claimedAmountSum.toFixed(2)}/${packet.totalAmount.toFixed(2)}元。`;
+            let summaryText = `${claimedCount}/${packet.count}個紅包，共${claimedAmountSum.toFixed(1)}/${packet.totalAmount.toFixed(1)}元。`;
             if (!packet.isFullyClaimed && claimedCount < packet.count) {
                 const timeLeft = Math.floor((packet.timestamp + 24*60*60*1000 - Date.now()) / (1000 * 60 * 60));
                 if(timeLeft > 0) summaryText += ` 剩餘紅包將在${timeLeft}小時內退還。`;
@@ -26468,7 +26468,7 @@ let selectedFrames = new Set();
         
                 item.innerHTML = `
                     <span class="name">${claimerDisplayName}</span>
-                    <span class="amount">${amount.toFixed(2)} 元</span>
+                    <span class="amount">${amount.toFixed(1)} 元</span>
                     ${luckyTag}
                 `;
                 listEl.appendChild(item);
@@ -31028,7 +31028,7 @@ ${boardString}
                     <div class="product-info">
                         <div class="product-name">${product.name}</div>
                         <div class="product-footer">
-                            <div class="product-price">${product.price.toFixed(2)}</div>
+                            <div class="product-price">${product.price.toFixed(1)}</div>
                             <button class="add-to-cart-btn">加入購物車</button>
                         </div>
                     </div>
@@ -31128,7 +31128,7 @@ async function renderShoppingProducts() {
             <div class="product-info">
                 <div class="product-name">${product.name}</div>
                 <div class="product-footer">
-                    <div class="product-price">${product.price.toFixed(2)}</div>
+                    <div class="product-price">${product.price.toFixed(1)}</div>
                     <button class="add-to-cart-btn">加入購物車</button>
                 </div>
             </div>
@@ -31226,7 +31226,7 @@ async function renderShoppingProducts() {
                                 <div class="cart-item-name">${product.name}</div>
                                 ${variationHtml}
                                 <div class="cart-item-footer">
-                                    <div class="cart-item-price">$${(item.variation?.price || product.price).toFixed(2)}</div>
+                                    <div class="cart-item-price">$${(item.variation?.price || product.price).toFixed(1)}</div>
                                     <div class="quantity-control">
                                         <button class="quantity-btn decrease-qty-btn" data-id="${product.id}">-</button>
                                         <span class="quantity-display">${item.quantity}</span>
@@ -31266,7 +31266,7 @@ async function renderShoppingProducts() {
                     }
                 });
             }
-            document.getElementById('cart-total').textContent = `合計: $${total.toFixed(2)}`;
+            document.getElementById('cart-total').textContent = `合計: $${total.toFixed(1)}`;
         }
         
         /* ▼▼▼ 請用這整塊新代碼替換舊的 handleCheckout 和 sendGiftMessage 函數，並添加新函數 ▼▼▼ */
@@ -31413,9 +31413,9 @@ const itemsForMessage = itemsToSend.map(cartItem => {
             const receiptBody = document.getElementById('gift-receipt-body');
             let itemsHtml = '';
             message.items.forEach(item => {
-                itemsHtml += `<tr><td class="item-name">${item.name}</td><td class="item-qty">${item.quantity}</td><td class="item-price">$${item.price.toFixed(2)}</td><td class="item-subtotal">$${(item.price * item.quantity).toFixed(2)}</td></tr>`;
+                itemsHtml += `<tr><td class="item-name">${item.name}</td><td class="item-qty">${item.quantity}</td><td class="item-price">$${item.price.toFixed(1)}</td><td class="item-subtotal">$${(item.price * item.quantity).toFixed(1)}</td></tr>`;
             });
-            receiptBody.innerHTML = `<div class="receipt-header"><h3>購物中心</h3><p>交易時間: ${new Date(message.timestamp).toLocaleString()}</p></div><table class="receipt-items-table"><thead><tr><th class="item-name">商品</th><th class="item-qty">數量</th><th class="item-price">單價</th><th class="item-subtotal">小計</th></tr></thead><tbody>${itemsHtml}</tbody></table><div class="receipt-total">總計: $${message.total.toFixed(2)}</div><div class="receipt-footer">感謝您的惠顧，歡迎再次光臨！</div>`;
+            receiptBody.innerHTML = `<div class="receipt-header"><h3>購物中心</h3><p>交易時間: ${new Date(message.timestamp).toLocaleString()}</p></div><table class="receipt-items-table"><thead><tr><th class="item-name">商品</th><th class="item-qty">數量</th><th class="item-price">單價</th><th class="item-subtotal">小計</th></tr></thead><tbody>${itemsHtml}</tbody></table><div class="receipt-total">總計: $${message.total.toFixed(1)}</div><div class="receipt-footer">感謝您的惠顧，歡迎再次光臨！</div>`;
             document.getElementById('gift-receipt-modal').classList.add('visible');
         }
         
@@ -33979,7 +33979,7 @@ function renderCharBrowserHistory() {
                     <div class="product-info">
                         <div class="product-name">${item.itemName}</div>
                         <div style="display: flex; justify-content: space-between; align-items: center; margin-top: 8px;">
-                            <div class="product-price">${(item.price || 0).toFixed(2)}</div>
+                            <div class="product-price">${(item.price || 0).toFixed(1)}</div>
                             <div class="char-product-status">${item.status}</div>
                         </div>
                     </div>
@@ -35891,7 +35891,7 @@ function renderCharWallet() {
     `;
     summaryCard.innerHTML = `
         <p style="color: #8a8a8a; margin: 0 0 10px 0;">本月總支出</p>
-        <p style="font-size: 32px; font-weight: 600; color: #1f1f1f; margin: 0;">$${totalExpenses.toFixed(2)}</p>
+        <p style="font-size: 32px; font-weight: 600; color: #1f1f1f; margin: 0;">$${totalExpenses.toFixed(1)}</p>
     `;
     contentEl.appendChild(summaryCard);
 
@@ -35920,7 +35920,7 @@ function renderCharWallet() {
                 <p style="font-weight: 500; margin: 0 0 4px 0;">${item.itemName}</p>
                 <p style="font-size: 12px; color: #8a8a8a; margin: 0;">${item.status}</p>
             </div>
-            <div style="font-weight: 600; font-size: 16px; color: #ff5722;">- $${(item.price || 0).toFixed(2)}</div>
+            <div style="font-weight: 600; font-size: 16px; color: #ff5722;">- $${(item.price || 0).toFixed(1)}</div>
         `;
         contentEl.appendChild(itemEl);
     });
@@ -39015,7 +39015,7 @@ async function compressAllLocalImages() {
 
         // 4. 操作完成後，顯示統計結果 (邏輯不變)
         const reduction = stats.originalSize - stats.newSize;
-        const reductionPercent = stats.originalSize > 0 ? (reduction / stats.originalSize * 100).toFixed(2) : 0;
+        const reductionPercent = stats.originalSize > 0 ? (reduction / stats.originalSize * 100).toFixed(1) : 0;
 
         await showCustomAlert(
             '壓縮完成！',
@@ -39023,7 +39023,7 @@ async function compressAllLocalImages() {
             - 共找到 ${stats.found} 張本地圖片<br>
             - 成功壓縮 ${stats.compressed} 張<br>
             - 跳過(已壓縮或無需壓縮) ${stats.skipped} 張<br>
-            - 空間節省了 <strong>${(reduction / 1024 / 1024).toFixed(2)} MB</strong> (壓縮率 ${reductionPercent}%)
+            - 空間節省了 <strong>${(reduction / 1024 / 1024).toFixed(1)} MB</strong> (壓縮率 ${reductionPercent}%)
             <br><br>
             建議刷新頁面以應用所有更改。`
         );
@@ -42131,7 +42131,7 @@ async function openVariationSelector(productId) {
             selectedLabel.style.backgroundColor = '#e7f3ff';
 
             const selectedVariation = product.variations[parseInt(selectedRadio.value)];
-            document.getElementById('variation-selected-price').textContent = `$${selectedVariation.price.toFixed(2)}`;
+            document.getElementById('variation-selected-price').textContent = `$${selectedVariation.price.toFixed(1)}`;
             if (selectedVariation.imageUrl) {
                 document.getElementById('variation-product-image').src = selectedVariation.imageUrl;
             } else {
@@ -45684,11 +45684,11 @@ if (deleteBtn) {
         // 4. 即時更新紅包金額顯示
         document.getElementById('rp-group-amount').addEventListener('input', (e) => {
             const amount = parseFloat(e.target.value) || 0;
-            document.getElementById('rp-group-total').textContent = `$ ${amount.toFixed(2)}`;
+            document.getElementById('rp-group-total').textContent = `$ ${amount.toFixed(1)}`;
         });
         document.getElementById('rp-direct-amount').addEventListener('input', (e) => {
             const amount = parseFloat(e.target.value) || 0;
-            document.getElementById('rp-direct-total').textContent = `$ ${amount.toFixed(2)}`;
+            document.getElementById('rp-direct-total').textContent = `$ ${amount.toFixed(1)}`;
         });
         
         // ▲▲▲ 新事件綁定結束 ▲▲▲
