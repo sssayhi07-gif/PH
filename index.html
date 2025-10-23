@@ -11531,7 +11531,7 @@ input, textarea, select {
                             <path d="M22 14.5L18 10.5L10.3333 18.5M12.5 16L9 12.5L2 19.5" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></path>
                         </svg>
                     </button>
-                    <button id="transfer-btn" class="chat-action-icon-btn action-button" title="轉帳">￥</button>
+                    <button id="transfer-btn" class="chat-action-icon-btn action-button" title="轉帳">$</button>
                     <button id="voice-message-btn" class="chat-action-icon-btn action-button" title="發送語音"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
                             <path d="M12 1a3 3 0 0 0-3 3v8a3 3 0 0 0 6 0V4a3 3 0 0 0-3-3z"></path>
                             <path d="M19 10v2a7 7 0 0 1-14 0v-2"></path>
@@ -12815,10 +12815,10 @@ input, textarea, select {
     </div>
     <div id="transfer-modal">
         <div class="transfer-content">
-            <div class="transfer-header">給Ta一個驚喜！</div>
+            <div class="transfer-header">給他一個驚喜！</div>
             <div class="transfer-input-group">
                 <label for="transfer-amount">轉帳金額</label>
-                <input type="number" id="transfer-amount" placeholder="0.00" min="0" max="999999" step="0.01">
+                <input type="number" id="transfer-amount" placeholder="0" min="0" max="999999" step="0.01">
             </div>
             <div class="transfer-input-group">
                 <label for="transfer-note">備註 (可選)</label>
@@ -12853,8 +12853,8 @@ input, textarea, select {
             </div>
         </div>
         <div class="modal-footer">
-            <!-- 【核心修改1】原來的“取消”按鈕，現在變成了“為TA點外送” -->
-            <button class="save" id="waimai-order-for-ai-btn">為TA點單</button>
+            <!-- 【核心修改1】原來的“取消”按鈕，現在變成了“為他點外送” -->
+            <button class="save" id="waimai-order-for-ai-btn">為他點單</button>
             <!-- 【核心修改2】原來的“發起請求”按鈕，現在是另一個選項 -->
             <button class="save" id="waimai-confirm-btn">發起請求</button>
         </div>
@@ -12900,7 +12900,7 @@ input, textarea, select {
                 <div id="rp-content-group" class="frame-content" style="padding: 20px 15px;">
                     <div class="form-group">
                         <label>總金額 (元)</label>
-                        <input type="number" id="rp-group-amount" placeholder="0.00">
+                        <input type="number" id="rp-group-amount" placeholder="0">
                     </div>
                     <div class="form-group">
                         <label>紅包個數</label>
@@ -12921,7 +12921,7 @@ input, textarea, select {
                     </div>
                     <div class="form-group">
                         <label>金額 (元)</label>
-                        <input type="number" id="rp-direct-amount" placeholder="0.00">
+                        <input type="number" id="rp-direct-amount" placeholder="0">
                     </div>
                     <div class="form-group">
                         <label>祝福語</label>
@@ -12949,7 +12949,7 @@ input, textarea, select {
             <div class="modal-body" style="padding: 15px;">
                 <p id="rp-details-greeting" style="text-align: center; font-size: 20px; color: #333; margin: 0 0 20px 0;"></p>
                 <div id="rp-details-my-amount" style="text-align: center; display: none; margin-bottom: 20px;">
-                    <span style="font-size: 40px; font-weight: bold; color: #E44D44;">0.00</span>
+                    <span style="font-size: 40px; font-weight: bold; color: #E44D44;">0</span>
                     <span style="font-size: 18px; color: #E44D44;">元</span>
                 </div>
                 <div id="rp-details-summary" style="font-size: 13px; color: #8a8a8a; border-top: 1px solid #e0e0e0; padding-top: 10px;"></div>
