@@ -10497,7 +10497,7 @@ input, textarea, select {
         </div>
         <div id="char-app-grid">
             <div class="app-row">
-                <div class="app-icon" onclick="openCharApp('qq')"><div class="icon-bg"><img id="cphone-icon-img-qq" src=""></div><span class="label">Message<</span></div>
+                <div class="app-icon" onclick="openCharApp('qq')"><div class="icon-bg"><img id="cphone-icon-img-qq" src=""></div><span class="label">Message</span></div>
                 <div class="app-icon" onclick="openCharApp('album')"><div class="icon-bg"><img id="cphone-icon-img-album" src=""></div><span class="label">相冊</span></div>
                 <div class="app-icon" onclick="openCharApp('browser')"><div class="icon-bg"><img id="cphone-icon-img-browser" src=""></div><span class="label">瀏覽器</span></div>
                 <div class="app-icon" onclick="openCharApp('taobao')"><div class="icon-bg"><img id="cphone-icon-img-taobao" src=""></div><span class="label">淘寶</span></div>
@@ -10567,7 +10567,7 @@ input, textarea, select {
     <div id="char-album-screen" class="char-screen">
         <div class="header">
             <span class="back-btn" onclick="switchToCharHomeScreen()">‹</span>
-            <span>TA的相冊</span>
+            <span>他的相冊</span>
             <div class="header-actions">
                 <span class="action-btn" id="regenerate-char-album-btn" title="重新生成相冊內容">
                     <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
@@ -10586,7 +10586,7 @@ input, textarea, select {
 <div id="char-browser-screen" class="char-screen">
     <div class="header">
         <span class="back-btn" onclick="switchToCharHomeScreen()">‹</span>
-        <span>TA的瀏覽器歷史</span>
+        <span>他的瀏覽器歷史</span>
         <!-- 【核心新增】重新生成按鈕 -->
         <div class="header-actions">
             <span class="action-btn" id="regenerate-char-browser-btn" title="重新生成瀏覽記錄">
@@ -10625,11 +10625,10 @@ input, textarea, select {
 <div id="char-taobao-screen" class="char-screen">
     <div class="header">
         <span class="back-btn" onclick="switchToCharHomeScreen()">‹</span>
-        <span>TA的淘寶訂單</span>
+        <span>他的淘寶訂單</span>
         <div class="header-actions">
             
             <!-- 【核心新增2】重新生成按鈕 -->
-            <span class="action-btn" id="regenerate-char-taobao-btn" title="重新生成購買記錄">
                 <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
                     <path d="M20 11A8.1 8.1 0 0 0 4.5 9M4 5v4h4"></path>
                     <path d="M4 13a8.1 8.1 0 0 0 15.5 2m.5 4v-4h-4"></path>
@@ -10764,7 +10763,7 @@ input, textarea, select {
 <div id="char-music-screen" class="char-screen">
     <div class="header">
         <span class="back-btn" onclick="switchToCharHomeScreen()">‹</span>
-        <span>TA的歌單</span>
+        <span>他的歌單</span>
         <div class="header-actions">
             <span class="action-btn" id="regenerate-char-music-btn" title="重新生成歌單">
                 <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
@@ -11531,7 +11530,7 @@ input, textarea, select {
                             <path d="M22 14.5L18 10.5L10.3333 18.5M12.5 16L9 12.5L2 19.5" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></path>
                         </svg>
                     </button>
-                    <button id="transfer-btn" class="chat-action-icon-btn action-button" title="轉帳">￥</button>
+                    <button id="transfer-btn" class="chat-action-icon-btn action-button" title="轉帳">$</button>
                     <button id="voice-message-btn" class="chat-action-icon-btn action-button" title="發送語音"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
                             <path d="M12 1a3 3 0 0 0-3 3v8a3 3 0 0 0 6 0V4a3 3 0 0 0-3-3z"></path>
                             <path d="M19 10v2a7 7 0 0 1-14 0v-2"></path>
@@ -12818,7 +12817,7 @@ input, textarea, select {
             <div class="transfer-header">給Ta一個驚喜！</div>
             <div class="transfer-input-group">
                 <label for="transfer-amount">轉帳金額</label>
-                <input type="number" id="transfer-amount" placeholder="0.00" min="0" max="999999" step="0.01">
+                <input type="number" id="transfer-amount" placeholder="0" min="0" max="999999" step="0.01">
             </div>
             <div class="transfer-input-group">
                 <label for="transfer-note">備註 (可選)</label>
@@ -14204,7 +14203,7 @@ let readingState = {}; // { chatId: { isActive, isMinimized, title, ... } }
             // 步驟2：如果不是用戶，再到群成員列表裡去查找對應的AI角色
             const member = groupChat.members.find(m => m.originalName === originalName);
             
-            // 步驟3：如果找到了AI成員，就返回TA的群昵稱；如果都找不到，就返回原始名字作為保底
+            // 步驟3：如果找到了AI成員，就返回他的群昵稱；如果都找不到，就返回原始名字作為保底
             return member ? member.groupNickname : originalName;
         }
         // ▲▲▲ 替換結束 ▲▲▲
@@ -19312,7 +19311,7 @@ if (chat.settings.enableTimePerception) {
                                 !c.isGroup && c.id !== member.id && c.groupId === memberChat.groupId
                             );
                             if (friendChats.length > 0) {
-                                contactsText = `TA的好友包括: ${friendChats.map(f => f.name).join('、 ')}`;
+                                contactsText = `他的好友包括: ${friendChats.map(f => f.name).join('、 ')}`;
                             }
                         }
                         return `- **${member.groupNickname}** (本名: ${member.originalName}): ${member.persona} [社交背景: ${contactsText}]`;
@@ -19479,7 +19478,7 @@ ${callTranscriptContext}
                         else if (msg.type === 'voice_message') content = `[${sender} 發送了一條語音，內容是：'${msg.content}']`;
                         else if (msg.type === 'transfer') content = `[${msg.senderName} 向 ${msg.receiverName} 轉帳 ${msg.amount}元, 備註: ${msg.note}]`;
                         else if (msg.type === 'location_share') {
-                            content = `[${sender} 分享了Ta的位置：'${msg.content}']`;
+                            content = `[${sender} 分享了他的位置：'${msg.content}']`;
         
                         } 
                         else if (msg.type === 'repost') {
@@ -28305,7 +28304,7 @@ async function triggerAutoSummary(chatId, force = false) {
     *   別人 **對我** 說的話，或者 **與我相關** 的事。
     *   對我個人 **很重要** 的群聊事件、關鍵資訊和心理活動。
 3.  **【簡潔性鐵律】**: 每條個人記憶總結【絕對不能超過60個字】。
-4.  **【省略規則】**: 如果一個角色在本次對話中【完全沒有參與或提及】，你可以省略TA的記憶。
+4.  **【省略規則】**: 如果一個角色在本次對話中【完全沒有參與或提及】，你可以省略他的記憶。
 5.  **輸出格式**: 你的回復【必須且只能】是一個JSON物件，格式如下：
     \`\`\`json
     {
@@ -33868,7 +33867,7 @@ window.switchToCharScreen = switchToCharScreen;
             const photos = char.simulatedAlbum || [];
         
             if (photos.length === 0) {
-                gridEl.innerHTML = '<p style="text-align:center; color: var(--text-secondary); padding: 50px 0;">TA的相冊還是空的，<br>點擊右上角刷新按鈕生成一些照片吧！</p>';
+                gridEl.innerHTML = '<p style="text-align:center; color: var(--text-secondary); padding: 50px 0;">他的相冊還是空的，<br>點擊右上角刷新按鈕生成一些照片吧！</p>';
                 return;
             }
         
@@ -34056,8 +34055,8 @@ function renderCharAppUsage() {
     }
 
     const appNameMap = {
-        'qq': 'QQ', 'album': '相冊', 'browser': '瀏覽器', 'taobao': '淘寶',
-        'memo': '備忘錄', 'diary': '日記', 'amap': '高德地圖', 'usage': 'App記錄'
+        'qq': 'Message', 'album': '相冊', 'browser': '瀏覽器', 'taobao': '淘寶',
+        'memo': '備忘錄', 'diary': '日記', 'amap': '地圖', 'usage': 'App記錄'
     };
 
     log.forEach(entry => {
@@ -34221,7 +34220,7 @@ async function handleGenerateSimulatedDiaries() {
     const chat = state.chats[activeCharacterId];
     if (!chat) return;
 
-    await showCustomAlert("請稍候...", `正在請求“${chat.name}”翻開TA的日記本...`);
+    await showCustomAlert("請稍候...", `正在請求“${chat.name}”翻開他的日記本...`);
 
     const { proxyUrl, apiKey, model } = state.apiConfig;
     if (!proxyUrl || !apiKey || !model) {
@@ -34968,7 +34967,7 @@ if (summary3Hours || summary6Hours || summary9Hours || summaryToday || summary3D
         // 4. 更新 System Prompt 以包含用戶人設
         const systemPrompt = `
 # 你的核心任務
-你正在扮演角色“${chat.originalName}”。用戶剛剛在TA的手機（CPhone）上點擊了一個按鈕，希望你能繼續你們之前的對話。你的任務是根據上下文，生成【3到5條】符合你人設的、簡短的、連續的新回復。
+你正在扮演角色“${chat.originalName}”。用戶剛剛在他的手機（CPhone）上點擊了一個按鈕，希望你能繼續你們之前的對話。你的任務是根據上下文，生成【3到5條】符合你人設的、簡短的、連續的新回復。
 
 # 輸出格式鐵律 (最高優先順序)
 - 你的回復【必須】是一個JSON陣列，每個物件代表一條消息。
@@ -35288,7 +35287,7 @@ async function handleGenerateSimulatedAlbum() {
         return;
     }
 
-    await showCustomAlert("請稍候...", `正在請求“${chat.name}”回憶TA的相冊照片...`);
+    await showCustomAlert("請稍候...", `正在請求“${chat.name}”回憶他的相冊照片...`);
 
     const { proxyUrl, apiKey, model } = state.apiConfig;
     if (!proxyUrl || !apiKey || !model) {
@@ -35427,7 +35426,7 @@ ${recentHistoryWithUser}
             const photos = char.simulatedAlbum || [];
         
             if (photos.length === 0) {
-                gridEl.innerHTML = '<p style="text-align:center; color: var(--text-secondary); padding: 50px 0;">TA的相冊還是空的，<br>點擊右上角刷新按鈕生成一些照片吧！</p>';
+                gridEl.innerHTML = '<p style="text-align:center; color: var(--text-secondary); padding: 50px 0;">他的相冊還是空的，<br>點擊右上角刷新按鈕生成一些照片吧！</p>';
                 return;
             }
         
@@ -35619,7 +35618,7 @@ function renderCharBrowserHistory() {
     const history = char.simulatedBrowserHistory || [];
 
     if (history.length === 0) {
-        listEl.innerHTML = '<p style="text-align:center; color: var(--text-secondary); padding: 50px 0;">TA的瀏覽器空空如也，<br>點擊右上角刷新按鈕生成一些記錄吧！</p>';
+        listEl.innerHTML = '<p style="text-align:center; color: var(--text-secondary); padding: 50px 0;">他的瀏覽器空空如也，<br>點擊右上角刷新按鈕生成一些記錄吧！</p>';
         return;
     }
 
@@ -35935,7 +35934,7 @@ async function handleGenerateSimulatedMemos() {
     const chat = state.chats[activeCharacterId];
     if (!chat) return;
 
-    await showCustomAlert("請稍候...", `正在請求“${chat.name}”分享TA的備忘錄...`);
+    await showCustomAlert("請稍候...", `正在請求“${chat.name}”分享他的備忘錄...`);
 
     const { proxyUrl, apiKey, model } = state.apiConfig;
     if (!proxyUrl || !apiKey || !model) {
@@ -36434,7 +36433,7 @@ async function handleGenerateSimulatedMusic() {
     const chat = state.chats[activeCharacterId];
     if (!chat) return;
 
-    await showCustomAlert("請稍候...", `正在請求“${chat.name}”分享TA的私人歌單...`);
+    await showCustomAlert("請稍候...", `正在請求“${chat.name}”分享他的私人歌單...`);
 
     const { proxyUrl, apiKey, model } = state.apiConfig;
     if (!proxyUrl || !apiKey || !model) {
@@ -36553,7 +36552,7 @@ function renderCharMusicScreen() {
     const playlist = char.simulatedMusicPlaylist || [];
 
     if (playlist.length === 0) {
-        listEl.innerHTML = '<p style="text-align:center; color: var(--text-secondary); padding: 50px 0;">TA的歌單還是空的，<br>點擊右上角刷新按鈕生成一些歌曲吧！</p>';
+        listEl.innerHTML = '<p style="text-align:center; color: var(--text-secondary); padding: 50px 0;">他的歌單還是空的，<br>點擊右上角刷新按鈕生成一些歌曲吧！</p>';
         return;
     }
 
@@ -36997,7 +36996,7 @@ async function handleGenerateDoubanPosts() {
     -   這個欄位的內容是用於生成該NPC頭像的、簡潔的【英文】關鍵字。
     -   不同的NPC【必須】有不同的頭像指令，以確保他們的頭像是獨一無二的。
 8.  **【頭像一致性 (至關重要！)】**:
-    -   如果一個路人NPC在同一個帖子中多次出現（例如，既是發帖人又是評論者，或多次評論），你【必須】為TA的所有出現都使用【完全相同】的 \`avatar_prompt\`。這至關重要！
+    -   如果一個路人NPC在同一個帖子中多次出現（例如，既是發帖人又是評論者，或多次評論），你【必須】為他的所有出現都使用【完全相同】的 \`avatar_prompt\`。這至關重要！
 9.  **【格式 (最高優先順序)】**: 
     - 你的回復【必須且只能】是一個JSON陣列格式的字串。
     - 你的回復必須以 \`[\` 開始，並以 \`]\` 結束。
@@ -37009,7 +37008,7 @@ async function handleGenerateDoubanPosts() {
         "groupName": "一個生動有趣的小組名稱",
         "postTitle": "一個引人-注目的帖子標題",
         "authorName": "發帖角色的【備註名】",
-        "authorOriginalName": "(僅當發帖者是主要角色時【必須】提供) TA的原始備註名",
+        "authorOriginalName": "(僅當發帖者是主要角色時【必須】提供) 他的原始備註名",
         "authorAvatarPrompt": "(僅當發帖者是路人NPC時【必須】提供) 一段用於生成該NPC頭像的【英文】關鍵字。風格為 anime style, simple background",
         "content": "帖子的詳細正文，必須支持分行符號\\n。",
         "likesCount": 152,
@@ -39846,7 +39845,7 @@ function buildWerewolfPrompt() {
         const playerIndex = werewolfGameState.players.findIndex(player => player.id === p.id) + 1;
         // 【核心修改1】在這裡同時提供了昵稱和本名，並明確指示了本名的用途
         charactersAndPlayersDossier += `
-## ${playerIndex}號玩家: ${p.name} (這是TA的昵稱)
+## ${playerIndex}號玩家: ${p.name} (這是他的昵稱)
 - **本名 (你在對話中必須用這個名字稱呼TA)**: ${p.originalName}
 - **身份**: ${p.id === 'user' ? '【用戶 (User)】' : '【AI角色】'}
 - **人設 (必須嚴格遵守)**: ${p.character_persona}
@@ -39901,7 +39900,7 @@ function buildWerewolfPrompt() {
             }
             if (p.role === '預言家' && werewolfGameState.nightActions.prophetCheck) {
                 const checkedPlayer = werewolfGameState.players.find(pl => pl.id === werewolfGameState.nightActions.prophetCheck.target);
-                secretInfo += `- 你昨晚查驗了 ${checkedPlayer.name}，TA的身份是：【${werewolfGameState.nightActions.prophetCheck.result}】\n`;
+                secretInfo += `- 你昨晚查驗了 ${checkedPlayer.name}，他的身份是：【${werewolfGameState.nightActions.prophetCheck.result}】\n`;
             }
             if (p.role === '女巫') {
                 if (werewolfGameState.nightActions.savedId) {
@@ -42985,7 +42984,7 @@ document.getElementById('import-data-input').addEventListener('change', e => han
                 const remarkName = await showCustomPrompt('創建新聊天 (第1/2步)', '請輸入你想為Ta設置的【備註名】(例如: 哥哥)');
                 if (!remarkName || !remarkName.trim()) return;
         
-                const originalName = await showCustomPrompt('創建新聊天 (第2/2步)', '請輸入Ta的【本名】(例如: 李星辰，這個名字將用於AI識別)');
+                const originalName = await showCustomPrompt('創建新聊天 (第2/2步)', '請輸入他的【本名】(例如: 李星辰，這個名字將用於AI識別)');
                 if (!originalName || !originalName.trim()) return;
         
 // 這是全新的、確保角色能正確顯示的代碼
@@ -47062,7 +47061,7 @@ document.getElementById('regenerate-char-qq-btn').addEventListener('click', asyn
             const item = e.target.closest('.char-product-item');
             if (item && item.dataset.reason) {
                 const reason = item.dataset.reason;
-                showCustomAlert("TA的想法...", reason.replace(/\n/g, '<br>'));
+                showCustomAlert("他的想法...", reason.replace(/\n/g, '<br>'));
             }
         });
         
