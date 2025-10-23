@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="zh-TW">
+<html lang="zh-CN">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
@@ -5537,7 +5537,7 @@
             font-weight: 700;
             color: #ff5722;
         }
-        .product-price::before { content: '¥'; font-size: 12px; }
+        .product-price::before { content: '$'; font-size: 12px; }
         
         .add-to-cart-btn {
             padding: 6px 12px;
@@ -7460,7 +7460,7 @@
     color: #ff5722;
     margin-top: 8px;
 }
-.char-product-item .product-price::before { content: '¥'; font-size: 12px; }
+.char-product-item .product-price::before { content: '$'; font-size: 12px; }
 
 /* ▲▲▲ 全新CSS黏貼結束 ▲▲▲ */
 /* ▼▼▼ 【全新V2.0】CphoneQQ類比功能樣式 ▼▼▼ */
@@ -12683,7 +12683,7 @@ input, textarea, select {
             <div id="cart-footer">
                 <label class="select-all-label"><input type="checkbox" id="select-all-cart-items"> 全選</label>
                 <div class="cart-summary">
-                    <div id="cart-total">合計: ¥0.00</div>
+                    <div id="cart-total">合計: $0</div>
                     <span class="cart-subtext">不含運費</span>
                 </div>
                 <button id="checkout-btn">結算(0)</button>
@@ -12910,7 +12910,7 @@ input, textarea, select {
                         <label>祝福語</label>
                         <input type="text" id="rp-group-greeting" placeholder="恭喜發財，大吉大利！">
                     </div>
-                    <p id="rp-group-total" style="text-align: center; font-size: 24px; font-weight: bold; margin: 10px 0;">¥ 0.00</p>
+                    <p id="rp-group-total" style="text-align: center; font-size: 24px; font-weight: bold; margin: 10px 0;">$ 0</p>
                     <button id="send-group-packet-btn" class="form-button">塞錢進紅包</button>
                 </div>
                 <!-- 3. 專屬紅包內容區 -->
@@ -12927,7 +12927,7 @@ input, textarea, select {
                         <label>祝福語</label>
                         <input type="text" id="rp-direct-greeting" placeholder="恭喜發財，大吉大利！">
                     </div>
-                    <p id="rp-direct-total" style="text-align: center; font-size: 24px; font-weight: bold; margin: 10px 0;">¥ 0.00</p>
+                    <p id="rp-direct-total" style="text-align: center; font-size: 24px; font-weight: bold; margin: 10px 0;">$ 0</p>
                     <button id="send-direct-packet-btn" class="form-button">塞錢進紅包</button>
                 </div>
             </div>
@@ -18267,7 +18267,7 @@ else if (msg.type === 'share_link') {
                         else { titleText = `轉帳: ${senderDisplayName} → ${receiverDisplayName}`; noteText = msg.note || '群聊內轉帳'; }
                     }
                     const heartIcon = `<svg viewBox="0 0 24 24" width="20" height="20" fill="currentColor" style="vertical-align: middle;"><path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z"></path></svg>`;
-                    contentHtml = `<div class="transfer-card"><div class="transfer-title">${heartIcon} ${titleText}</div><div class="transfer-amount">¥ ${Number(msg.amount).toFixed(2)}</div><div class="transfer-note">${noteText}</div></div>`;
+                    contentHtml = `<div class="transfer-card"><div class="transfer-title">${heartIcon} ${titleText}</div><div class="transfer-amount">$ ${Number(msg.amount).toFixed(2)}</div><div class="transfer-note">${noteText}</div></div>`;
                 } else if (msg.type === 'waimai_request') {
                     bubble.classList.add('is-waimai-request', 'is-card-like');
                      if (msg.status === 'paid' || msg.status === 'rejected') bubble.classList.add(`status-${msg.status}`);
@@ -18275,7 +18275,7 @@ else if (msg.type === 'share_link') {
                     const requestTitle = `來自 ${senderDisplayName} 的代付請求`;
                     let actionButtonsHtml = '';
                     if (msg.status === 'pending' && !isUser) { actionButtonsHtml = `<div class="waimai-user-actions"><button class="waimai-decline-btn" data-choice="rejected">殘忍拒絕</button><button class="waimai-pay-btn" data-choice="paid">為Ta買單</button></div>`; }
-                    contentHtml = `<div class="waimai-card"><div class="waimai-header"><img src="https://files.catbox.moe/mq179k.png" class="icon" alt="Meituan Icon"><div class="title-group"><span class="brand">美團外賣</span><span class="separator">|</span><span>外賣美食</span></div></div><div class="waimai-catchphrase">Hi，你和我的距離只差一頓外賣～</div><div class="waimai-main"><div class="request-title">${requestTitle}</div><div class="payment-box"><div class="payment-label">需付款</div><div class="amount">¥${Number(msg.amount).toFixed(2)}</div><div class="countdown-label">剩餘支付時間<div class="countdown-timer" id="waimai-timer-${msg.timestamp}"></div></div></div><button class="waimai-details-btn">查看詳情</button></div>${actionButtonsHtml}</div>`;
+                    contentHtml = `<div class="waimai-card"><div class="waimai-header"><img src="https://files.catbox.moe/mq179k.png" class="icon" alt="Meituan Icon"><div class="title-group"><span class="brand">美團外賣</span><span class="separator">|</span><span>外賣美食</span></div></div><div class="waimai-catchphrase">Hi，你和我的距離只差一頓外賣～</div><div class="waimai-main"><div class="request-title">${requestTitle}</div><div class="payment-box"><div class="payment-label">需付款</div><div class="amount">$${Number(msg.amount).toFixed(2)}</div><div class="countdown-label">剩餘支付時間<div class="countdown-timer" id="waimai-timer-${msg.timestamp}"></div></div></div><button class="waimai-details-btn">查看詳情</button></div>${actionButtonsHtml}</div>`;
                        setTimeout(() => {
         if (msg.status === 'pending') {
             const timerElement = document.getElementById(`waimai-timer-${msg.timestamp}`);
@@ -18306,7 +18306,7 @@ else if (msg.type === 'share_link') {
                 <div class="request-title" style="margin-bottom: 12px;">${senderDisplayName} 已為${recipientDisplayName}下單，請慢用～</div>
                 <div class="payment-box">
                     <div class="payment-label" style="font-size: 18px; font-weight: 600;">${msg.productInfo}</div>
-                    <div class="amount" style="margin-top: 8px;">¥${Number(msg.amount).toFixed(2)}</div>
+                    <div class="amount" style="margin-top: 8px;">$${Number(msg.amount).toFixed(2)}</div>
                 </div>
                 <button class="waimai-details-btn">查看訂單詳情</button>
             </div>
@@ -19301,7 +19301,7 @@ if (chat.settings.enableTimePerception) {
                     if (allProducts.length > 0) {
                         shoppingContext = "\n\n# 你的商店 (你可以為群成員購買禮物):\n";
                         allProducts.forEach(product => {
-                            shoppingContext += `- (ID: ${product.id}) 商品: ${product.name}, 價格: ¥${product.price.toFixed(2)}\n`;
+                            shoppingContext += `- (ID: ${product.id}) 商品: ${product.name}, 價格: $${product.price.toFixed(2)}\n`;
                         });
                     }
                     let membersWithContacts = chat.members.map(member => {
@@ -19608,7 +19608,7 @@ ${callTranscriptContext}
                     if (allProducts.length > 0) {
                         shoppingContext = "\n\n# 你的商店 (你可以為用戶購買禮物):\n";
                         allProducts.forEach(product => {
-                            shoppingContext += `- (ID: ${product.id}) 商品: ${product.name}, 價格: ¥${product.price.toFixed(2)}\n`;
+                            shoppingContext += `- (ID: ${product.id}) 商品: ${product.name}, 價格: $${product.price.toFixed(2)}\n`;
                         });
                     }
                     if (isOfflineMode) {
@@ -24994,7 +24994,7 @@ async function showWaimaiDetails(timestamp) {
         detailsHtml = `
             <div style="text-align: left; font-size: 15px; line-height: 1.8;">
                 <strong>商品:</strong> ${message.productInfo}<br>
-                <strong>金額:</strong> ¥${Number(message.amount).toFixed(2)}<br>
+                <strong>金額:</strong> $${Number(message.amount).toFixed(2)}<br>
                 <strong>狀態:</strong> ${statusText}
             </div>
         `;
@@ -25027,7 +25027,7 @@ async function showWaimaiDetails(timestamp) {
                 <strong>贈送方:</strong> ${senderDisplayName}<br>
                 <strong>接收方:</strong> ${recipientDisplayName}<br>
                 <strong>商品:</strong> ${message.productInfo}<br>
-                <strong>金額:</strong> ¥${Number(message.amount).toFixed(2)}
+                <strong>金額:</strong> $${Number(message.amount).toFixed(2)}
             </div>
         `;
     }
@@ -26156,8 +26156,8 @@ let selectedFrames = new Set();
             document.getElementById('rp-group-greeting').value = '';
             document.getElementById('rp-direct-amount').value = '';
             document.getElementById('rp-direct-greeting').value = '';
-            document.getElementById('rp-group-total').textContent = '¥ 0.00';
-            document.getElementById('rp-direct-total').textContent = '¥ 0.00';
+            document.getElementById('rp-group-total').textContent = '$ 0';
+            document.getElementById('rp-direct-total').textContent = '$ 0';
         
             // 填充專屬紅包的接收人列表
             const receiverSelect = document.getElementById('rp-direct-receiver');
@@ -31226,7 +31226,7 @@ async function renderShoppingProducts() {
                                 <div class="cart-item-name">${product.name}</div>
                                 ${variationHtml}
                                 <div class="cart-item-footer">
-                                    <div class="cart-item-price">¥${(item.variation?.price || product.price).toFixed(2)}</div>
+                                    <div class="cart-item-price">$${(item.variation?.price || product.price).toFixed(2)}</div>
                                     <div class="quantity-control">
                                         <button class="quantity-btn decrease-qty-btn" data-id="${product.id}">-</button>
                                         <span class="quantity-display">${item.quantity}</span>
@@ -31266,7 +31266,7 @@ async function renderShoppingProducts() {
                     }
                 });
             }
-            document.getElementById('cart-total').textContent = `合計: ¥${total.toFixed(2)}`;
+            document.getElementById('cart-total').textContent = `合計: $${total.toFixed(2)}`;
         }
         
         /* ▼▼▼ 請用這整塊新代碼替換舊的 handleCheckout 和 sendGiftMessage 函數，並添加新函數 ▼▼▼ */
@@ -31413,9 +31413,9 @@ const itemsForMessage = itemsToSend.map(cartItem => {
             const receiptBody = document.getElementById('gift-receipt-body');
             let itemsHtml = '';
             message.items.forEach(item => {
-                itemsHtml += `<tr><td class="item-name">${item.name}</td><td class="item-qty">${item.quantity}</td><td class="item-price">¥${item.price.toFixed(2)}</td><td class="item-subtotal">¥${(item.price * item.quantity).toFixed(2)}</td></tr>`;
+                itemsHtml += `<tr><td class="item-name">${item.name}</td><td class="item-qty">${item.quantity}</td><td class="item-price">$${item.price.toFixed(2)}</td><td class="item-subtotal">$${(item.price * item.quantity).toFixed(2)}</td></tr>`;
             });
-            receiptBody.innerHTML = `<div class="receipt-header"><h3>購物中心</h3><p>交易時間: ${new Date(message.timestamp).toLocaleString()}</p></div><table class="receipt-items-table"><thead><tr><th class="item-name">商品</th><th class="item-qty">數量</th><th class="item-price">單價</th><th class="item-subtotal">小計</th></tr></thead><tbody>${itemsHtml}</tbody></table><div class="receipt-total">總計: ¥${message.total.toFixed(2)}</div><div class="receipt-footer">感謝您的惠顧，歡迎再次光臨！</div>`;
+            receiptBody.innerHTML = `<div class="receipt-header"><h3>購物中心</h3><p>交易時間: ${new Date(message.timestamp).toLocaleString()}</p></div><table class="receipt-items-table"><thead><tr><th class="item-name">商品</th><th class="item-qty">數量</th><th class="item-price">單價</th><th class="item-subtotal">小計</th></tr></thead><tbody>${itemsHtml}</tbody></table><div class="receipt-total">總計: $${message.total.toFixed(2)}</div><div class="receipt-footer">感謝您的惠顧，歡迎再次光臨！</div>`;
             document.getElementById('gift-receipt-modal').classList.add('visible');
         }
         
@@ -35891,7 +35891,7 @@ function renderCharWallet() {
     `;
     summaryCard.innerHTML = `
         <p style="color: #8a8a8a; margin: 0 0 10px 0;">本月總支出</p>
-        <p style="font-size: 32px; font-weight: 600; color: #1f1f1f; margin: 0;">¥${totalExpenses.toFixed(2)}</p>
+        <p style="font-size: 32px; font-weight: 600; color: #1f1f1f; margin: 0;">$${totalExpenses.toFixed(2)}</p>
     `;
     contentEl.appendChild(summaryCard);
 
@@ -35920,7 +35920,7 @@ function renderCharWallet() {
                 <p style="font-weight: 500; margin: 0 0 4px 0;">${item.itemName}</p>
                 <p style="font-size: 12px; color: #8a8a8a; margin: 0;">${item.status}</p>
             </div>
-            <div style="font-weight: 600; font-size: 16px; color: #ff5722;">- ¥${(item.price || 0).toFixed(2)}</div>
+            <div style="font-weight: 600; font-size: 16px; color: #ff5722;">- $${(item.price || 0).toFixed(2)}</div>
         `;
         contentEl.appendChild(itemEl);
     });
@@ -42131,7 +42131,7 @@ async function openVariationSelector(productId) {
             selectedLabel.style.backgroundColor = '#e7f3ff';
 
             const selectedVariation = product.variations[parseInt(selectedRadio.value)];
-            document.getElementById('variation-selected-price').textContent = `¥${selectedVariation.price.toFixed(2)}`;
+            document.getElementById('variation-selected-price').textContent = `$${selectedVariation.price.toFixed(2)}`;
             if (selectedVariation.imageUrl) {
                 document.getElementById('variation-product-image').src = selectedVariation.imageUrl;
             } else {
@@ -45684,11 +45684,11 @@ if (deleteBtn) {
         // 4. 即時更新紅包金額顯示
         document.getElementById('rp-group-amount').addEventListener('input', (e) => {
             const amount = parseFloat(e.target.value) || 0;
-            document.getElementById('rp-group-total').textContent = `¥ ${amount.toFixed(2)}`;
+            document.getElementById('rp-group-total').textContent = `$ ${amount.toFixed(2)}`;
         });
         document.getElementById('rp-direct-amount').addEventListener('input', (e) => {
             const amount = parseFloat(e.target.value) || 0;
-            document.getElementById('rp-direct-total').textContent = `¥ ${amount.toFixed(2)}`;
+            document.getElementById('rp-direct-total').textContent = `$ ${amount.toFixed(2)}`;
         });
         
         // ▲▲▲ 新事件綁定結束 ▲▲▲
