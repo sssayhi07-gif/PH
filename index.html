@@ -2148,7 +2148,7 @@
         }
         /* ▲▲▲ 新CSS黏貼結束 ▲▲▲ */
         
-        /* ▼▼▼ 【全新】外賣代付卡片樣式 ▼▼▼ */
+        /* ▼▼▼ 【全新】外送代付卡片樣式 ▼▼▼ */
         
         
         .waimai-card {
@@ -2257,7 +2257,7 @@
         }
         /* ▲▲▲ 新CSS黏貼結束 ▲▲▲ */
         
-        /* ▼▼▼ 【全新】外賣回應狀態樣式 ▼▼▼ */
+        /* ▼▼▼ 【全新】外送回應狀態樣式 ▼▼▼ */
         
         /* === 同意支付後的樣式 === */
         .message-bubble.status-paid .waimai-card {
@@ -2325,7 +2325,7 @@
         }
         /* ▲▲▲ 新CSS黏貼結束 ▲▲▲ */
         
-        /* ▼▼▼ 【全新】外賣請求的使用者操作按鈕樣式 ▼▼▼ */
+        /* ▼▼▼ 【全新】外送請求的使用者操作按鈕樣式 ▼▼▼ */
         .waimai-user-actions {
             display: flex;
             gap: 10px;
@@ -11537,7 +11537,7 @@ input, textarea, select {
                             <path d="M12 19v4"></path>
                             <path d="M8 23h8"></path>
                         </svg></button>
-                    <button id="send-waimai-request-btn" class="chat-action-icon-btn action-button" title="發起外賣請求"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <button id="send-waimai-request-btn" class="chat-action-icon-btn action-button" title="發起外送請求"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
                             <path d="M6 2L3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4z"></path>
                             <line x1="3" y1="6" x2="21" y2="6"></line>
                             <path d="M16 10a4 4 0 0 1-8 0"></path>
@@ -12540,7 +12540,7 @@ input, textarea, select {
             <div class="modal-body" style="display: flex; flex-direction: column; gap: 15px;">
                 <div class="form-group" style="flex-shrink: 0;">
                     <label for="rule-name-input">規則名稱</label>
-                    <input type="text" id="rule-name-input" placeholder="例如：美團外賣卡片">
+                    <input type="text" id="rule-name-input" placeholder="例如：美團外送卡片">
                 </div>
                 <div class="form-group" style="flex-shrink: 0;">
                     <label for="rule-chat-id-select">綁定範圍</label>
@@ -12814,7 +12814,7 @@ input, textarea, select {
     </div>
     <div id="transfer-modal">
         <div class="transfer-content">
-            <div class="transfer-header">給Ta一個驚喜！</div>
+            <div class="transfer-header">給他一個驚喜！</div>
             <div class="transfer-input-group">
                 <label for="transfer-amount">轉帳金額</label>
                 <input type="number" id="transfer-amount" placeholder="0" min="0" max="999999" step="0.01">
@@ -12835,11 +12835,11 @@ input, textarea, select {
             <p id="battery-alert-text"></p>
         </div>
     </div>
-<!-- ▼▼▼ 【全新】外賣請求模態框 (V2.0 - 支持為TA點單) ▼▼▼ -->
+<!-- ▼▼▼ 【全新】外送請求模態框 (V2.0 - 支持為他點單) ▼▼▼ -->
 <div id="waimai-request-modal" class="modal">
     <div class="modal-content" style="width: 290px;">
         <div class="modal-header">
-            <span>發起外賣訂單</span>
+            <span>發起外送訂單</span>
         </div>
         <div class="modal-body">
             <div class="form-group">
@@ -12852,8 +12852,8 @@ input, textarea, select {
             </div>
         </div>
         <div class="modal-footer">
-            <!-- 【核心修改1】原來的“取消”按鈕，現在變成了“為TA點外賣” -->
-            <button class="save" id="waimai-order-for-ai-btn">為TA點單</button>
+            <!-- 【核心修改1】原來的“取消”按鈕，現在變成了“為他點外送” -->
+            <button class="save" id="waimai-order-for-ai-btn">為他點單</button>
             <!-- 【核心修改2】原來的“發起請求”按鈕，現在是另一個選項 -->
             <button class="save" id="waimai-confirm-btn">發起請求</button>
         </div>
@@ -13773,7 +13773,7 @@ let isLoadingMorePosts = false;    // 【全新】為動態清單添加獨立的
 let sortedChatListItems = [];   // 用於存儲完整的、已排序的聊天列表項
                 let editingPersonaPresetId = null;
                 let currentReplyContext = null;
-        let waimaiTimers = {}; // 用於存儲外賣倒計時
+        let waimaiTimers = {}; // 用於存儲外送倒計時
         
         let activeMessageTimestamp = null;
 let activeCharacterId = null; // 用於跟蹤當前正在查看的CphoneID
@@ -18273,8 +18273,8 @@ else if (msg.type === 'share_link') {
                     const senderDisplayName = getDisplayNameInGroup(chat, msg.senderName);
                     const requestTitle = `來自 ${senderDisplayName} 的代付請求`;
                     let actionButtonsHtml = '';
-                    if (msg.status === 'pending' && !isUser) { actionButtonsHtml = `<div class="waimai-user-actions"><button class="waimai-decline-btn" data-choice="rejected">殘忍拒絕</button><button class="waimai-pay-btn" data-choice="paid">為Ta買單</button></div>`; }
-                    contentHtml = `<div class="waimai-card"><div class="waimai-header"><img src="https://files.catbox.moe/mq179k.png" class="icon" alt="Meituan Icon"><div class="title-group"><span class="brand">美團外賣</span><span class="separator">|</span><span>外賣美食</span></div></div><div class="waimai-catchphrase">Hi，你和我的距離只差一頓外賣～</div><div class="waimai-main"><div class="request-title">${requestTitle}</div><div class="payment-box"><div class="payment-label">需付款</div><div class="amount">$${Number(msg.amount).toFixed(2)}</div><div class="countdown-label">剩餘支付時間<div class="countdown-timer" id="waimai-timer-${msg.timestamp}"></div></div></div><button class="waimai-details-btn">查看詳情</button></div>${actionButtonsHtml}</div>`;
+                    if (msg.status === 'pending' && !isUser) { actionButtonsHtml = `<div class="waimai-user-actions"><button class="waimai-decline-btn" data-choice="rejected">殘忍拒絕</button><button class="waimai-pay-btn" data-choice="paid">為他買單</button></div>`; }
+                    contentHtml = `<div class="waimai-card"><div class="waimai-header"><img src="https://files.catbox.moe/mq179k.png" class="icon" alt="Meituan Icon"><div class="title-group"><span class="brand">美團外送</span><span class="separator">|</span><span>外送美食</span></div></div><div class="waimai-catchphrase">Hi，你和我的距離只差一頓外送～</div><div class="waimai-main"><div class="request-title">${requestTitle}</div><div class="payment-box"><div class="payment-label">需付款</div><div class="amount">$${Number(msg.amount).toFixed(2)}</div><div class="countdown-label">剩餘支付時間<div class="countdown-timer" id="waimai-timer-${msg.timestamp}"></div></div></div><button class="waimai-details-btn">查看詳情</button></div>${actionButtonsHtml}</div>`;
                        setTimeout(() => {
         if (msg.status === 'pending') {
             const timerElement = document.getElementById(`waimai-timer-${msg.timestamp}`);
@@ -18299,7 +18299,7 @@ else if (msg.type === 'share_link') {
         <div class="waimai-card">
             <div class="waimai-header">
                 <img src="https://files.catbox.moe/mq179k.png" class="icon" alt="Meituan Icon">
-                <div class="title-group"><span class="brand">美團外賣</span><span class="separator">|</span><span>外賣美食</span></div>
+                <div class="title-group"><span class="brand">美團外送</span><span class="separator">|</span><span>外送美食</span></div>
             </div>
             <div class="waimai-main">
                 <div class="request-title" style="margin-bottom: 12px;">${senderDisplayName} 已為${recipientDisplayName}下單，請慢用～</div>
@@ -19447,16 +19447,16 @@ ${callTranscriptContext}
 -   **發拼手氣紅包**: \`{"type": "red_packet", "packetType": "lucky", "name": "角色本名", "amount": 8.88, "count": 5, "greeting": "祝福語"}\`
 -   **發專屬紅包**: \`{"type": "red_packet", "packetType": "direct", "name": "角色本名", "amount": 5.20, "receiver": "接收者本名", "greeting": "祝福語"}\`
 -   **打開紅包**: \`{"type": "open_red_packet", "name": "角色本名", "packet_timestamp": 紅包時間戳記}\`
--   **發起外賣代付**: \`{"type": "waimai_request", "name": "角色本名", "productInfo": "商品", "amount": 18}\`
--   **回應外賣代付**: \`{"type": "waimai_response", "name": "角色本名", "status": "paid", "for_timestamp": 請求時間戳記}\`
+-   **發起外送代付**: \`{"type": "waimai_request", "name": "角色本名", "productInfo": "商品", "amount": 18}\`
+-   **回應外送代付**: \`{"type": "waimai_response", "name": "角色本名", "status": "paid", "for_timestamp": 請求時間戳記}\`
 -   **發起投票**: \`{"type": "poll", "name": "角色本名", "question": "問題", "options": "選項A\\n選項B"}\`
 -   **參與投票**: \`{"type": "vote", "name": "角色本名", "poll_timestamp": 投票時間戳記, "choice": "選項文本"}\`
 -   **送禮物 **:  \`{"type": "gift", "name": "你的角色本名", "itemName": "禮物名稱", "itemPrice": 價格(數字), "reason": "送禮原因", "image_prompt": "禮物圖片【英文】關鍵字", "recipients": ["收禮人本名A", "收禮人本名B"]} \`
--   **為他人點外賣**: \`{"type": "waimai_order", "name": "你的本名", "recipientName": "收禮者本名", "productInfo": "商品名", "amount": 價格, "greeting": "你想說的話"}\`
+-   **為他人點外送**: \`{"type": "waimai_order", "name": "你的本名", "recipientName": "收禮者本名", "productInfo": "商品名", "amount": 價格, "greeting": "你想說的話"}\`
 # 互動指南 (請嚴格遵守)
 -   **紅包互動**: 搶紅包後，你【必須】根據系統提示的結果（搶到多少錢、誰是手氣王）發表符合人設的評論。
 -   **音樂互動**: 【必須】圍繞【用戶的行為】進行評論。嚴禁將用戶切歌等行為歸因於其他AI成員。
--   **外賣代付**: 僅當【你扮演的角色】想讓【別人】付錢時才能發起。當訂單被支付後，【絕對不能】再次支付。
+-   **外送代付**: 僅當【你扮演的角色】想讓【別人】付錢時才能發起。當訂單被支付後，【絕對不能】再次支付。
 
 現在，請根據以上規則和下方的對話歷史，繼續這場群聊。`;
         
@@ -19506,9 +19506,9 @@ ${callTranscriptContext}
                         }
                         else if (msg.type === 'waimai_request') {
                             if(msg.status === 'paid') {
-                                content = `[系統提示：${msg.paidBy} 為 ${sender} 的外賣訂單支付了 ${msg.amount} 元。此訂單已完成。]`;
+                                content = `[系統提示：${msg.paidBy} 為 ${sender} 的外送訂單支付了 ${msg.amount} 元。此訂單已完成。]`;
                             } else {
-                                content = `[${sender} 發起了外賣代付請求，商品是“${msg.productInfo}”，金額是 ${msg.amount} 元，訂單時間戳記為 ${msg.timestamp}]`;
+                                content = `[${sender} 發起了外送代付請求，商品是“${msg.productInfo}”，金額是 ${msg.amount} 元，訂單時間戳記為 ${msg.timestamp}]`;
                             }
                         }
                         else if (msg.type === 'red_packet') {
@@ -19732,7 +19732,7 @@ ${historySlice.map(msg => {
             if (msg.type === 'user_photo') return { role: 'user', content: `${prefix}[你發送了一張需要AI識別的圖片，圖片內容是：'${msg.content}']` };
             if (msg.type === 'voice_message') return { role: 'user', content: `${prefix}[你發送了一條語音訊息，內容是：'${msg.content}']` };
             if (msg.type === 'transfer') return { role: 'user', content: `${prefix}[系統提示：你於時間戳記 ${msg.timestamp} 向對方發起了轉帳: ${msg.amount}元, 備註: ${msg.note}。等待對方處理。]` };
-            if (msg.type === 'waimai_request') return { role: 'user', content: `${prefix}[系統提示：你於時間戳記 ${msg.timestamp} 發起了外賣代付請求，商品是“${msg.productInfo}”，金額是 ${msg.amount} 元。]` };
+            if (msg.type === 'waimai_request') return { role: 'user', content: `${prefix}[系統提示：你於時間戳記 ${msg.timestamp} 發起了外送代付請求，商品是“${msg.productInfo}”，金額是 ${msg.amount} 元。]` };
             else if (msg.type === 'gift') {
                 const itemsSummary = msg.items.map(item => `${item.name} x${item.quantity}`).join('、 ');
                 let recipientSummary = chat.isGroup ? `送給了 ${msg.recipients.map(name => getDisplayNameInGroup(chat, name)).join('、 ')}` : `送給了 ${chat.name}`;
@@ -19952,7 +19952,7 @@ systemPrompt = `
 -   **創造羈絆**: 用【倒計時】記錄約定，用【回憶】珍藏趣事。適時【拍一拍】或換首【音樂】來調節氣氛。
 -   **主動社交**: 積極【點贊/評論】對方動態，並主動【發動態】分享你的生活。在特殊時刻，可通過【禮物】或【轉帳】表達心意。
 -   **當涉及金錢與好意時 (必須立即回應！)**:
-    -   **收到轉帳或外賣代付請求**: 你【必須】在下一輪對話中立即做出反應，絕不能無視。
+    -   **收到轉帳或外送代付請求**: 你【必須】在下一輪對話中立即做出反應，絕不能無視。
     -   **回應原則**: 根據你的人設和當前情景，決定是【接受/支付】還是【拒絕】。
 # 個人狀態的動態管理 (展現你的“生活感”)
 你的狀態不是一成不變的。你應該像一個真實的人一樣，根據生活和心情的變化，主動管理自己的狀態，並讓對方知道。
@@ -20045,13 +20045,13 @@ ${postsContext}
 -   **切換歌曲**: \`{"type": "change_music", "song_name": "歌名"}\` (從播放清單選)
 -   **發起轉帳**: \`{"type": "transfer", "amount": 5.20, "note": "備註"}\`
 -   **回應轉帳**: \`{"type": "accept_transfer", "for_timestamp": 時間戳記}\` 或 \`{"type": "decline_transfer", "for_timestamp": 時間戳記}\`
--   **發起外賣代付**: \`{"type": "waimai_request", "productInfo": "商品", "amount": 25}\` (你想讓【用戶】幫你付錢時使用)
--   **回應外賣代付**: \`{"type": "waimai_response", "status": "paid" or "rejected", "for_timestamp": 時間戳記}\`
+-   **發起外送代付**: \`{"type": "waimai_request", "productInfo": "商品", "amount": 25}\` (你想讓【用戶】幫你付錢時使用)
+-   **回應外送代付**: \`{"type": "waimai_response", "status": "paid" or "rejected", "for_timestamp": 時間戳記}\`
 -   **發起視頻通話**: \`{"type": "video_call_request"}\`
 -   **回應視頻通話**: \`{"type": "video_call_response", "decision": "accept" or "reject"}\`
 -   **下五子棋**: \`{"type": "gomoku_move", "name": "${chat.originalName}", "x": (0-14), "y": (0-14)}\`
 -   **送禮物**: \`{"type": "gift", "itemName": "禮物名稱", "itemPrice": 價格(數字), "reason": "送這個禮物的原因", "image_prompt": "生成禮物圖片的【英文】關鍵字, 風格為 realistic product photo, high quality, on a clean white background"}\`
--   **為用戶點外賣**:  \`{"type": "waimai_order", "productInfo": "商品名", "amount": 價格, "greeting": "你想說的話"} \`(你主動為用戶點外賣時使用)
+-   **為用戶點外送**:  \`{"type": "waimai_order", "productInfo": "商品名", "amount": 價格, "greeting": "你想說的話"} \`(你主動為用戶點外送時使用)
 
 現在，請根據以上規則和下面的對話歷史，繼續進行對話。`;
             
@@ -20111,7 +20111,7 @@ messagesPayload = historySlice.map(msg => {
         if (msg.type === 'user_photo') return { role: 'user', content: `${prefix}[你發送了一張需要AI識別的圖片，圖片內容是：'${msg.content}']` };
         if (msg.type === 'voice_message') return { role: 'user', content: `${prefix}[你發送了一條語音訊息，內容是：'${msg.content}']` };
         if (msg.type === 'transfer') return { role: 'user', content: `${prefix}[系統提示：你於時間戳記 ${msg.timestamp} 向對方發起了轉帳: ${msg.amount}元, 備註: ${msg.note}。等待對方處理。]` };
-        if (msg.type === 'waimai_request') return { role: 'user', content: `${prefix}[系統提示：你於時間戳記 ${msg.timestamp} 發起了外賣代付請求，商品是“${msg.productInfo}”，金額是 ${msg.amount} 元。]` };
+        if (msg.type === 'waimai_request') return { role: 'user', content: `${prefix}[系統提示：你於時間戳記 ${msg.timestamp} 發起了外送代付請求，商品是“${msg.productInfo}”，金額是 ${msg.amount} 元。]` };
         else if (msg.type === 'gift') {
             const itemsSummary = msg.items.map(item => `${item.name} x${item.quantity}`).join('、 ');
             let recipientSummary = chat.isGroup ? `送給了 ${msg.recipients.map(name => getDisplayNameInGroup(chat, name)).join('、 ')}` : `送給了 ${chat.name}`;
@@ -21209,7 +21209,7 @@ chat.history.push(aiClaimedMessage);
                             let notificationText;
                             switch (aiMessage.type) {
                                 case 'transfer': notificationText = `[收到一筆轉帳]`; break;
-                                case 'waimai_request': notificationText = `[收到一個外賣代付請求]`; break;
+                                case 'waimai_request': notificationText = `[收到一個外送代付請求]`; break;
                                 case 'ai_image': notificationText = `[圖片]`; break;
                                 case 'voice_message': notificationText = `[語音]`; break;
                                 case 'sticker': notificationText = aiMessage.meaning ? `[表情: ${aiMessage.meaning}]` : '[表情]'; break;
@@ -21319,7 +21319,7 @@ stopSilentAudio(); // <--- 在這裡添加
                 async function sendUserTransfer() { if (!state.activeChatId) return; const amountInput = document.getElementById('transfer-amount'); const noteInput = document.getElementById('transfer-note'); const amount = parseFloat(amountInput.value); const note = noteInput.value.trim(); if (isNaN(amount) || amount < 0 || amount > 999999) { alert('請輸入有效的金額 (0 到 999999 之間)！'); return; } const chat = state.chats[state.activeChatId]; const senderName = chat.isGroup ? (chat.settings.myNickname || '我') : '我'; const receiverName = chat.isGroup ? '群聊' : chat.name; const msg = { role: 'user', type: 'transfer', amount: amount, note: note, senderName, receiverName, timestamp: Date.now() }; chat.history.push(msg); await db.chats.put(chat); appendMessage(msg, chat); renderChatList(); document.getElementById('transfer-modal').classList.remove('visible'); amountInput.value = ''; noteInput.value = ''; }
 
 /**
- * 【全新 V2.0 | AI認知修復版】處理用戶點擊“為TA點外賣”的邏輯
+ * 【全新 V2.0 | AI認知修復版】處理用戶點擊“為他點外送”的邏輯
  */
 async function sendWaimaiOrderForAI() {
     if (!state.activeChatId) return;
@@ -21353,7 +21353,7 @@ async function sendWaimaiOrderForAI() {
     // 2. 【核心修改1】創建一條對用戶隱藏的、語義更清晰的系統消息，明確告知AI這是一個“禮物”
     const hiddenMessage = {
         role: 'system',
-        content: `[系統提示：用戶(${myNickname})為你點了一份外賣作為【禮物】。外賣內容是“${productInfo}”，價值${amount}元。這不是一個代付請求，而是用戶已經為你支付了。請你對此表示感謝。]`,
+        content: `[系統提示：用戶(${myNickname})為你點了一份外送作為【禮物】。外送內容是“${productInfo}”，價值${amount}元。這不是一個代付請求，而是用戶已經為你支付了。請你對此表示感謝。]`,
         timestamp: now + 1,
         isHidden: true
     };
@@ -24925,7 +24925,7 @@ function createNewMemberInGroup() {
 }
 
         
-        // ▼▼▼ 【全新】外賣請求倒計時函數 ▼▼▼
+        // ▼▼▼ 【全新】外送請求倒計時函數 ▼▼▼
         function startWaimaiCountdown(element, endTime) {
             const timerId = setInterval(() => {
                 const now = Date.now();
@@ -24958,8 +24958,8 @@ function createNewMemberInGroup() {
 // ▼▼▼ 【最終修復版】請用這個全新的函數，完整替換舊的 showWaimaiDetails 函數 ▼▼▼
 
 /**
- * 【全新 V3.0 | 昵稱修復版】顯示外賣卡片的詳細資訊
- * @param {number} timestamp - 被點擊的外賣卡片消息的時間戳記
+ * 【全新 V3.0 | 昵稱修復版】顯示外送卡片的詳細資訊
+ * @param {number} timestamp - 被點擊的外送卡片消息的時間戳記
  */
 async function showWaimaiDetails(timestamp) {
     const chat = state.chats[state.activeChatId];
@@ -25022,7 +25022,7 @@ async function showWaimaiDetails(timestamp) {
 
         detailsHtml = `
             <div style="text-align: left; font-size: 15px; line-height: 1.8;">
-                <strong>訂單類型:</strong> 為TA點單<br>
+                <strong>訂單類型:</strong> 為他點單<br>
                 <strong>贈送方:</strong> ${senderDisplayName}<br>
                 <strong>接收方:</strong> ${recipientDisplayName}<br>
                 <strong>商品:</strong> ${message.productInfo}<br>
@@ -25052,9 +25052,9 @@ async function showWaimaiDetails(timestamp) {
             
             if (choice === 'paid') {
                 originalMessage.paidBy = myNickname; // 記錄是使用者付的錢
-                systemContent = `[系統提示：你 (${myNickname}) 為 ${originalMessage.senderName} 的外賣訂單（時間戳記: ${originalTimestamp}）完成了支付。此訂單已關閉，其他成員不能再支付。]`;
+                systemContent = `[系統提示：你 (${myNickname}) 為 ${originalMessage.senderName} 的外送訂單（時間戳記: ${originalTimestamp}）完成了支付。此訂單已關閉，其他成員不能再支付。]`;
             } else {
-                systemContent = `[系統提示：你 (${myNickname}) 拒絕了 ${originalMessage.senderName} 的外賣代付請求（時間戳記: ${originalTimestamp}）。]`;
+                systemContent = `[系統提示：你 (${myNickname}) 拒絕了 ${originalMessage.senderName} 的外送代付請求（時間戳記: ${originalTimestamp}）。]`;
             }
         
             // 2. 創建一條新的、對使用者隱藏的系統消息，告知AI結果
@@ -25539,9 +25539,9 @@ ${linkedContents}
             
             if (choice === 'paid') {
                 originalMessage.paidBy = myNickname; // 記錄是“我”付的錢
-                systemContent = `[系統提示：你 (${myNickname}) 為 ${originalMessage.senderName} 的外賣訂單（時間戳記: ${originalTimestamp}）完成了支付。此訂單已關閉，其他成員不能再支付。]`;
+                systemContent = `[系統提示：你 (${myNickname}) 為 ${originalMessage.senderName} 的外送訂單（時間戳記: ${originalTimestamp}）完成了支付。此訂單已關閉，其他成員不能再支付。]`;
             } else {
-                systemContent = `[系統提示：你 (${myNickname}) 拒絕了 ${originalMessage.senderName} 的外賣代付請求（時間戳記: ${originalTimestamp}）。]`;
+                systemContent = `[系統提示：你 (${myNickname}) 拒絕了 ${originalMessage.senderName} 的外送代付請求（時間戳記: ${originalTimestamp}）。]`;
             }
         
             // 3. 創建一條新的、對使用者隱藏的系統消息，告知AI結果
@@ -32269,8 +32269,8 @@ ${chat.settings.aiPersona}
 -   **切換歌曲**: \`{"type": "change_music", "song_name": "歌名"}\` (從播放清單選)
 -   **發起轉帳**: \`{"type": "transfer", "amount": 5.20, "note": "備註"}\`
 -   **回應轉帳**: \`{"type": "accept_transfer", "for_timestamp": 時間戳記}\` 或 \`{"type": "decline_transfer", "for_timestamp": 時間戳記}\`
--   **發起外賣代付**: \`{"type": "waimai_request", "productInfo": "商品", "amount": 25}\` (你想讓【用戶】幫你付錢時使用)
--   **回應外賣代付**: \`{"type": "waimai_response", "status": "paid" or "rejected", "for_timestamp": 時間戳記}\`
+-   **發起外送代付**: \`{"type": "waimai_request", "productInfo": "商品", "amount": 25}\` (你想讓【用戶】幫你付錢時使用)
+-   **回應外送代付**: \`{"type": "waimai_response", "status": "paid" or "rejected", "for_timestamp": 時間戳記}\`
 -   **發起視頻通話**: \`{"type": "video_call_request"}\`
 -   **回應視頻通話**: \`{"type": "video_call_response", "decision": "accept" or "reject"}\`
 
@@ -42981,7 +42981,7 @@ document.getElementById('import-data-input').addEventListener('change', e => han
         
             if (choice === 'manual') {
                 // 如果用戶選擇手動，則執行原來的邏輯
-                const remarkName = await showCustomPrompt('創建新聊天 (第1/2步)', '請輸入你想為Ta設置的【備註名】(例如: 哥哥)');
+                const remarkName = await showCustomPrompt('創建新聊天 (第1/2步)', '請輸入你想為他設置的【備註名】(例如: 哥哥)');
                 if (!remarkName || !remarkName.trim()) return;
         
                 const originalName = await showCustomPrompt('創建新聊天 (第2/2步)', '請輸入他的【本名】(例如: 李星辰，這個名字將用於AI識別)');
@@ -43362,7 +43362,7 @@ if (voiceBody) {
             }
             
             // ▼▼▼ 【【【核心新增代碼就在這裡！】】】 ▼▼▼
-            // 檢查是否點擊了 "為Ta買單" 或 "殘忍拒絕" 按鈕
+            // 檢查是否點擊了 "為他買單" 或 "殘忍拒絕" 按鈕
             const choiceBtn = e.target.closest('.waimai-user-actions button');
             if (choiceBtn) {
                 const bubble = choiceBtn.closest('.message-bubble');
@@ -44092,7 +44092,7 @@ document.getElementById('chat-settings-screen').addEventListener('click', (e) =>
         
 const waimaiModal = document.getElementById('waimai-request-modal');
 
-// 綁定工具列的“外賣”按鈕，用於打開彈窗
+// 綁定工具列的“外送”按鈕，用於打開彈窗
 document.getElementById('send-waimai-request-btn').addEventListener('click', () => {
     waimaiModal.classList.add('visible');
 });
@@ -44105,7 +44105,7 @@ waimaiModal.addEventListener('click', (e) => {
     }
 });
 
-// 【核心修改2】為新的“為TA點外賣”按鈕綁定我們新創建的函數
+// 【核心修改2】為新的“為他點外送”按鈕綁定我們新創建的函數
 document.getElementById('waimai-order-for-ai-btn').addEventListener('click', sendWaimaiOrderForAI);
 
 // 綁定“發起代付請求”按鈕（這個邏輯保持不變）
